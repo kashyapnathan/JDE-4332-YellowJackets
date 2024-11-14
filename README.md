@@ -111,3 +111,20 @@ course-scheduler/
      ```
 
 The app should now be running with the frontend available at `http://localhost:3000` and the backend API at `http://localhost:5000`.
+
+## API Documentation
+
+| Endpoint                        | Method | Description                      |
+|---------------------------------|--------|----------------------------------|
+| `/api/users`                    | GET    | Fetch all users                  |
+| `/api/users/:userId`            | GET    | Fetch a specific user by ID      |
+| `/api/semesters`                | GET    | Fetch all semesters              |
+| `/api/semesters/:semesterId`    | GET    | Fetch semester details           |
+| `/api/plans`                    | POST   | Create a new plan                |
+| `/api/plans/:planId/courses`    | GET    | Fetch all courses in a plan      |
+| `/api/students`                 | GET    | Fetch all students               |
+| `/api/students/:studentId`      | GET    | Fetch student details            |
+
+Refer to the `backend/routes/` folder for detailed API routes and parameters.
+
+The app should now be running with the frontend available at `http://localhost:3000` and the backend API at `http://localhost:5000`.
