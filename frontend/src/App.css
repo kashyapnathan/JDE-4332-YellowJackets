@@ -1,38 +1,104 @@
-.App {
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rbc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.rbc-toolbar button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #0056b3;
+}
+
+.rbc-time-view {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.rbc-time-content {
+  flex: 1;
+  border-right: 1px solid #ddd;
+}
+
+.rbc-time-content > div {
+  border-bottom: 1px solid #ddd;
+}
+
+.rbc-day-slot {
+  flex: 1;
+  border-right: 1px solid #ddd;
+}
+
+.rbc-day-slot:last-child {
+  border-right: none;
+}
+
+.rbc-event {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.rbc-event:hover {
+  background-color: #218838;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.rbc-timeslot-group {
+  border-top: none;
   display: flex;
   flex-direction: column;
+  width: 60px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.rbc-timeslot-group > div {
+  flex: 1;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-end;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-.App-link {
-  color: #61dafb;
+.rbc-day-bg {
+  background-color: #fafafa;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rbc-day-bg:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+
+.rbc-today {
+  background-color: #eaf8ff !important;
 }

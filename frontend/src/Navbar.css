@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #B3A369; 
+    padding: 20px 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar-hamburger .hamburger-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .navbar-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-profile span {
+    margin-right: 10px;
+  }
+  
+  .profile-photo {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+  }
+  
