@@ -57,9 +57,9 @@ const styles = {
   },
 };
 
-const Calendar = () => {
+const Calendar = ({plan}) => {
+  debugger;
   const [calendar, setCalendar] = useState(null);
-  const [events, setEvents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     text: "",
@@ -78,9 +78,9 @@ const Calendar = () => {
     timeRangeSelectedHandling: "Disabled",
     eventDeleteHandling: "Update",
     onEventDeleted: (args) => {
-      setEvents((prevEvents) => prevEvents.filter((e) => e.id !== args.e.id()));
+      plan.events = plan.events.filter((e) => e.id !== args.e.id());
     },
-    events,
+    events: plan.events,
     headerDateFormat: "dddd", 
   };
 
@@ -130,22 +130,24 @@ const Calendar = () => {
       };
     });
 
-    setEvents((prevEvents) => [...prevEvents, ...newEvents]);
+    plan.events = [...plan.events, ...newEvents];
     handleCloseModal();
   };
 
-  useEffect(() => {
-    
-    setEvents([]);
-  }, []);
-
   return (
     <div style={styles.wrap}>
-      <div style={styles.buttonContainer}>
-        <button style={styles.addButton} onClick={handleOpenModal}>
-          +
-        </button>
+      <div>
+        <h2>Events</h2>
+        <ul>
+          {plan.events.map(event => (
+            <li key={event.id}>
+              {event.title} on {event.date}
+            </li>
+          ))}
+        </ul>
+        <button onClick={handleOpenModal}>+</button>
       </div>
+
       <div style={styles.main}>
         <DayPilotCalendar {...config} controlRef={setCalendar} />
       </div>
