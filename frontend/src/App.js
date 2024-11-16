@@ -18,18 +18,22 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar /> 
-
-      <PlanList
-        plans={plans}
-        onSelectPlan={setSelectedPlanId}
-        onAddPlan={addNewPlan}
-        selectedPlanId={selectedPlanId}
-      />
-
-      {selectedPlan && (
+      <Navbar />
+      <div className="content">
+        <div className="sidebar">
+          <PlanList
+            plans={plans}
+            onSelectPlan={setSelectedPlanId}
+            onAddPlan={addNewPlan}
+            selectedPlanId={selectedPlanId}
+          />
+        </div>
+        <div className="calendar-container">
+           {selectedPlan && (
           <Calendar plan={selectedPlan} />
       )}
+      </div>
+    </div>
     </div>
   );
 }

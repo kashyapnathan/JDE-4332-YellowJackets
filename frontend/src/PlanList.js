@@ -1,26 +1,21 @@
 import React from 'react';
 
 const PlanList = ({ plans, onSelectPlan, onAddPlan, selectedPlanId }) => {
-  return (
-    <div>
-      <h2>Plans</h2>
-      <ul>
-        {plans.map(plan => (
-          <li key={plan.id}>
-            <button
-              style={{
-                fontWeight: plan.id === selectedPlanId ? 'bold' : 'normal',
-              }}
-              onClick={() => onSelectPlan(plan.id)}>
-                
-              {plan.name}
-            </button>
-          </li>
+    return (
+      <div className="plan-list">
+        {plans.map((plan) => (
+          <button
+            key={plan.id}
+            className={`plan-button ${selectedPlanId === plan.id ? 'selected' : ''}`}
+            onClick={() => onSelectPlan(plan.id)}
+          >
+            <i className="fas fa-calendar-alt"></i> {plan.name}
+          </button>
         ))}
-      </ul>
-      <button onClick={() => onAddPlan()}>Add New Plan</button>
-    </div>
-  );
-};
-
+        <button onClick={onAddPlan} className="plan-button add-plan-button">
+          <i className="fas fa-plus"></i> Add New Plan
+        </button>
+      </div>
+    );
+  };
 export default PlanList;
