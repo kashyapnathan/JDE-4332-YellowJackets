@@ -140,12 +140,17 @@ const Calendar = ({plan}) => {
       <div>
         <h2>Schedule</h2>
         <ul>
-          {plan.events.map(event => (
-            <li key={event.id}>
-              {event.title} on {event.date}
-            </li>
-          ))}
-        </ul>
+  {plan.events.map(event => {
+    const eventDate = new DayPilot.Date(event.start);
+    const dayOfWeek = eventDate.toString("dddd");
+    return (
+      <li key={event.id}>
+        {event.text} - {dayOfWeek}
+      </li>
+    );
+  })}
+</ul>
+
         <button onClick={handleOpenModal}>+</button>
       </div>
 
