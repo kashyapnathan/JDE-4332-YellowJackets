@@ -2,6 +2,9 @@
 
 A full-stack web application built with the MERN stack (MongoDB, Express.js, React, Node.js) to manage course scheduling for students and administrators. The app enables users to create, view, and manage semester course plans, check for conflicts, and integrate with Georgia Tech’s SSO for secure authentication.
 
+## Rationale for Project Artifact Implementation
+Choosing a semester to work on, creating new plans, and scheduling classes on a calender are the building block of what out application will represent. This portion that we have coded to begin with will be used as a base and template for all of the code that will be written going forward. It provides a satisfying measure to our client and to ourselves that we are on the right track and will continue to meet the goals we have set for ourselves in this past semester.
+
 ## Table of Contents
 
 - [Features](#features)
