@@ -128,3 +128,23 @@ The app should now be running with the frontend available at `http://localhost:3
 Refer to the `backend/routes/` folder for detailed API routes and parameters.
 
 The app should now be running with the frontend available at `http://localhost:3000` and the backend API at `http://localhost:5000`.
+
+
+# Release Notes Section 
+## Release Number 0.0.0 
+### Features
+- Able to select semester to work on
+- Can use multiple plans and switch between them
+- Can create new plans
+- Can schedule classes with name, instructor, section, time and days of the week and they will appear on calender
+- Can delete classes
+- Can view a list of classes on left hand side of calender
+  
+### Bug Fixes 
+No bugs as this is the first ever release
+### Known Issues
+There is limited function with the backend and database at this point so a lot of the data inputted by the user will not be saved
+
+Also there features like the login page and buttons like the hamburger on the left hand side that do not have use yet and are just for visuals. 
+
+The focus of this release is the project artifact implementation which is focused on adding and viewing classes on the calender, making plans and picking a semester to work on
