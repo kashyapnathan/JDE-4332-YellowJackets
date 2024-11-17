@@ -5,7 +5,8 @@ import "./Calendar.css";
 const styles = {
   wrap: {
     display: "flex",
-    justifyContent: "flex-end", 
+    justifyContent: "flex-start",
+    gap: "40px",
     padding: "20px",
   },
   buttonContainer: {
@@ -25,7 +26,7 @@ const styles = {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
   main: {
-    width: "60%", 
+    flexGrow: 1, 
     padding: "10px",
     background: "#fff",
     borderRadius: "10px",
@@ -137,7 +138,7 @@ const Calendar = ({plan}) => {
   return (
     <div style={styles.wrap}>
       <div>
-        <h2>Events</h2>
+        <h2>Schedule</h2>
         <ul>
           {plan.events.map(event => (
             <li key={event.id}>
