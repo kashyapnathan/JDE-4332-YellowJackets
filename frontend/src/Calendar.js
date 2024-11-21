@@ -111,29 +111,59 @@ const Calendar = ({plan}) => {
     setFormData({ ...formData, days: updatedDays });
   };
 
-  const handleSubmit = () => {
-    const newEvents = formData.days.map((day) => {
-      const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri"].indexOf(day);
-      const start = new DayPilot.Date(config.startDate).getDatePart();
-      const eventDate = start.addDays(dayIndex);
-
-      const [startHour, startMinute] = formData.startTime.split(":").map(Number);
-      const eventStart = eventDate.addHours(startHour).addMinutes(startMinute);
-
-      const [endHour, endMinute] = formData.endTime.split(":").map(Number);
-      const eventEnd = eventDate.addHours(endHour).addMinutes(endMinute);
-
-      return {
-        id: DayPilot.guid(),
-        text: `${formData.text} (${formData.section}) - ${formData.instructor}`,
-        start: eventStart.toString(),
-        end: eventEnd.toString(),
-      };
-    });
-
-    plan.events = [...plan.events, ...newEvents];
-    handleCloseModal();
+  const handleSubmit = async () => {
+    const courseData = {
+      name: formData.text,
+      instructor: formData.instructor,
+      section: formData.section,
+      days: formData.days, // Send the selected days as an array
+      startTime: formData.startTime, // Send start time as a string
+      endTime: formData.endTime, // Send end time as a string
+    };
+  
+    console.log("Course Data Sent to Backend:", courseData); // Debug log
+  
+    try {
+      const response = await fetch("http://localhost:5007/api/courses", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(courseData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to add course");
+      }
+  
+      // Update UI without affecting the database structure
+      const newEvents = formData.days.map((day) => {
+        const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri"].indexOf(day);
+        const start = new DayPilot.Date(config.startDate).getDatePart();
+        const eventDate = start.addDays(dayIndex);
+  
+        const [startHour, startMinute] = formData.startTime.split(":").map(Number);
+        const eventStart = eventDate.addHours(startHour).addMinutes(startMinute);
+  
+        const [endHour, endMinute] = formData.endTime.split(":").map(Number);
+        const eventEnd = eventDate.addHours(endHour).addMinutes(endMinute);
+  
+        return {
+          id: DayPilot.guid(), // Unique ID for UI
+          text: `${formData.text} (${formData.section}) - ${formData.instructor}`,
+          start: eventStart.toString(), // Required for UI
+          end: eventEnd.toString(), // Required for UI
+        };
+      });
+  
+      plan.events = [...plan.events, ...newEvents]; // Update the plan events
+      calendar.update({ events: plan.events }); // Update the calendar UI
+      handleCloseModal();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to save course. Please try again.");
+    }
   };
+  
+  
 
   return (
     <div style={styles.wrap}>

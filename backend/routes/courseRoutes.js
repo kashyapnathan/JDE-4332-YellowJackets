@@ -1,12 +1,26 @@
-// backend/routes/courseRoutes.js
-const express = require('express')
-const router = express.Router()
-const courseController = require('../controllers/courseController')
-
-router.get('/plans/:planId/courses', courseController.getCoursesByPlan)
-router.get('/:courseId', courseController.getCourse)
-router.post('/plans/:planId/courses', courseController.addCourse)
-router.put('/:courseId', courseController.updateCourse)
-router.delete('/:courseId', courseController.deleteCourse)
-
-module.exports = router
+router.post("/", async (req, res) => {
+    try {
+      const { name, instructor, section, days, startTime, endTime } = req.body;
+  
+      // Validate required fields
+      if (!name || !instructor || !section || !days || !startTime || !endTime) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+  
+      const course = new Course({
+        name,
+        instructor,
+        section,
+        days,
+        startTime,
+        endTime,
+      });
+  
+      const savedCourse = await course.save();
+      res.status(201).json({ message: "Course added successfully", course: savedCourse });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to save course" });
+    }
+  });
+  

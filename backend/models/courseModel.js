@@ -1,21 +1,12 @@
-// backend/models/courseModel.js
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema({
-  code: String,
-  name: String,
-  instructor: {
-    name: String,
-    email: String
-  },
-  timeSlot: {
-    day: String,
-    startTime: String,
-    endTime: String
-  },
-  location: String,
-  capacity: Number,
-  plan: { type: mongoose.Schema.Types.ObjectId, ref: 'Plan' }
-})
+  name: { type: String, required: true }, // Course Name
+  instructor: { type: String, required: true }, // Instructor Name
+  section: { type: String, required: true }, // Section Identifier
+  days: { type: [String], required: true }, // Array of days (e.g., ["Mon", "Wed"])
+  startTime: { type: String, required: true }, // Start time as a string (e.g., "10:00")
+  endTime: { type: String, required: true }, // End time as a string (e.g., "11:30")
+});
 
-module.exports = mongoose.model('Course', courseSchema)
+module.exports = mongoose.model('Course', courseSchema);
